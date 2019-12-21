@@ -1,0 +1,27 @@
+variables:
+  RUN_TESTS: './tests/*'
+
+before_script:
+  - pip install -r requirements.txt
+
+stages:
+  - tests
+  - main
+
+run_tests:
+  stage: tests
+  tags:
+    - num_gen
+  script:
+    - pytest %RUN_TESTS%
+  only:
+    - master
+
+run_main:
+  stage: main
+  tags:
+    - num_gen
+  script:
+    - python main.py 
+  only:
+    - master
