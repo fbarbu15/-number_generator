@@ -12,9 +12,6 @@ class NumberGenerator():
         self.current_value = start_value
         self._multiply_factor = multiply_factor
 
-    def next_value(self, previous_value):
-        self.current_value = (previous_value * self._multiply_factor) % DIVIDE_FACTOR
-        return self
-
-    def to_binary(self):
-        return bin(self.current_value)
+    def __next__(self):
+        self.current_value = (self.current_value * self._multiply_factor) % DIVIDE_FACTOR
+        return self.current_value
